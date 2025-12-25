@@ -52,8 +52,9 @@
 
         <h4>Fazer login</h4>
 
-        <input type="text" name="username" required id="username" placeholder="Nome de usuário">
-        <input type="password" name="password" required id="password" placeholder="Senha">
+        <table>
+            {{login_form.as_table}}
+        </table>
 
         <div class="login-actions">
             <button type="button">Cancelar</button>
