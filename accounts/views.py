@@ -21,6 +21,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            return redirect('task_list')
         else:
             login_form = AuthenticationForm()
     else:

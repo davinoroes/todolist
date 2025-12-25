@@ -10,7 +10,31 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>login</h1>
+    <form method='POST'>
+        {% csrf_token %}
+        <div class="modal fade" id="loginModal" role="dialog">
+          <div class="modal-dialog">
+
+            <div class="modal-content">
+              <div class="modal-header">
+
+                <h4 class="modal-title">Fazer login</h4>
+              </div>
+
+              <div class="modal-body">
+                <input type="text" name="username" required id="username" placeholder=" Nome de usuario">
+                <input type="text" name="password" required id="password" placeholder=" Senha">
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Logar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </form>
 </body>
 </html>
 
