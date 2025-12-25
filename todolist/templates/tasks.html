@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form method="GET" action="{% url 'task_list' %}">
+        <input type="text" name="search" placeholder="Buscar tarefa...">
+        <button type="submit">Buscar</button>
+    </form>   
+
+    {% if tasks %}
+        {% for task in tasks %}
+            <h1>{{task.tittle}}</h1>
+            <h1>{{task.active}}</h1>
+        {%endfor%}
+    {%endif%}
+</body>
+</html>
+{%endblock%}
