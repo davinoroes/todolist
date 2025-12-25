@@ -2,40 +2,64 @@
 
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form method='POST'>
+<style>
+    /* Container que ocupa a tela toda  */
+    .login-container {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Caixa preta do login */
+    .login-box {
+        background-color: #000;
+        padding: 40px;
+        width: 350px;
+        border-radius: 8px;
+        color: #fff;
+    }
+
+    .login-box h4 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .login-box input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+        border: none;
+    }
+
+    .login-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .login-actions button {
+        padding: 8px 16px;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+
+<div class="login-container">
+    <form method="POST" class="login-box">
         {% csrf_token %}
-        <div class="modal fade" id="loginModal" role="dialog">
-          <div class="modal-dialog">
 
-            <div class="modal-content">
-              <div class="modal-header">
+        <h4>Fazer login</h4>
 
-                <h4 class="modal-title">Fazer login</h4>
-              </div>
+        <input type="text" name="username" required id="username" placeholder="Nome de usuário">
+        <input type="password" name="password" required id="password" placeholder="Senha">
 
-              <div class="modal-body">
-                <input type="text" name="username" required id="username" placeholder=" Nome de usuario">
-                <input type="text" name="password" required id="password" placeholder=" Senha">
-              </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary">Logar</button>
-              </div>
-
-            </div>
-          </div>
+        <div class="login-actions">
+            <button type="button">Cancelar</button>
+            <button type="submit">Logar</button>
         </div>
-      </form>
-</body>
-</html>
+    </form>
+</div>
 
-{%endblock%}
+{% endblock %}
