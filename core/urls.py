@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from accounts.views import register_view,login_view
+from todolist.views import TasksView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', register_view, name='register'),
     path('login/', login_view, name='login'),
+    path('', TasksView.as_view(), name='task_list'),
 ]
