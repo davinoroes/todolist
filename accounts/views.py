@@ -27,6 +27,11 @@ def login_view(request):
     else:
         login_form = AuthenticationForm
     return render(request,'login.html', {'login_form' : login_form})
+
+def logout_view(request):
+    logout(request)
+    return redirect('task_list')
+
         
     
 
