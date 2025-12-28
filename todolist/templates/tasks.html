@@ -1,25 +1,105 @@
 {% extends "base.html" %}
-{% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <form method="GET" action="{% url 'task_list' %}">
-        <input type="text" name="search" placeholder="Buscar tarefa...">
-        <button type="submit">Buscar</button>
-    </form>   
 
-    {% if tasks %}
-        {% for task in tasks %}
-            <h1>{{task.tittle}}</h1>
-            <h1>{{task.active}}</h1>
-        {%endfor%}
-    {%endif%}
-</body>
-</html>
-{%endblock%}
+{% block content %}
+
+<style>
+    /* Container geral */
+    .tasks-wrapper {
+        min-height: calc(100vh - 80px); /* desconta a navbar */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Caixa principal */
+    .tasks-box {
+        background-color: #000;
+        color: #fff;
+        width: 420px;
+        padding: 30px;
+        border-radius: 24px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .tasks-box h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+        font-weight: 500;
+    }
+
+    /* Barra de busca */
+    .search-form {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 25px;
+    }
+
+    .search-form input {
+        flex: 1;
+        padding: 8px 10px;
+        border-radius: 6px;
+        border: none;
+        outline: none;
+    }
+
+    .search-form button {
+        padding: 8px 14px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    /* Lista de tarefas */
+    .tasks-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .task-item {
+        background-color: #111;
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    .empty-tasks {
+        text-align: center;
+        opacity: 0.7;
+        font-size: 14px;
+    }
+</style>
+
+<div class="tasks-wrapper">
+    <div class="tasks-box">
+
+        <h2>Lista de Tarefas</h2>
+
+        <form method="GET" action="{% url 'task_list' %}" class="search-form">
+            <input
+                type="text"
+                name="search"
+                placeholder="Buscar tarefa..."
+                value="{{ request.GET.search }}"
+            >
+            <button type="submit">Buscar</button>
+        </form>
+
+        {% if tasks %}
+            <div class="tasks-list">
+                {% for task in tasks %}
+                    <div class="task-item">
+                        {{ task.tittle }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="empty-tasks">Nenhuma tarefa encontrada.</p>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}
