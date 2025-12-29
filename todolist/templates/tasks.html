@@ -63,6 +63,23 @@
         padding: 10px 14px;
         border-radius: 8px;
         font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .task-title {
+    word-break: break-word;
+}
+
+    .delete-btn {
+        color: #aaa;
+        text-decoration: none;
+        font-size: 16px;
+        transition: 0.2s;
+    }
+
+    .delete-btn:hover {
+        color: #fff;
     }
 
     .empty-tasks {
@@ -92,8 +109,18 @@
             <div class="tasks-list">
                 {% for task in tasks %}
                     <div class="task-item">
-                        {{ task.tittle }}
-                    </div>
+                        <span class="task-title">
+                            {{ task.tittle }}
+                        </span>
+
+                        <a
+                            href="{% url 'deletetask' task.pk %}"
+                            class="delete-btn"
+                            title="Excluir tarefa"
+                        >
+                    🗑️
+                </a>
+            </div>
                 {% endfor %}
             </div>
         {% else %}
