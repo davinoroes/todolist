@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}
+Excluir Tarefa
+{% endblock %}
+
+{% block content %}
+<style>
+    .delete-task-wrapper {
+        min-height: calc(100vh - 60px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .delete-task-box {
+        background: #000;
+        width: 420px;
+        padding: 32px;
+        border-radius: 24px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+        color: #fff;
+        text-align: center;
+    }
+
+    .delete-task-box h1 {
+        font-size: 20px;
+        margin-bottom: 16px;
+        letter-spacing: 0.5px;
+    }
+
+    .delete-task-box p {
+        font-size: 14px;
+        color: #ccc;
+        margin-bottom: 24px;
+    }
+
+    .task-title {
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .delete-actions {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+    }
+
+    .delete-actions button {
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 13px;
+        transition: 0.2s;
+    }
+
+    .btn-delete {
+        background: #fff;
+        color: #000;
+    }
+
+    .btn-delete:hover {
+        opacity: 0.85;
+    }
+
+    .btn-cancel {
+        background: transparent;
+        color: #aaa;
+        border: 1px solid #444;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 13px;
+    }
+
+    .btn-cancel:hover {
+        color: #fff;
+        border-color: #fff;
+    }
+</style>
+
+<div class="delete-task-wrapper">
+    <div class="delete-task-box">
+        <h1>Excluir tarefa</h1>
+
+        <p>
+            Tem certeza que deseja excluir a tarefa
+            <span class="task-title">“{{ object.tittle }}”</span>?
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="delete-actions">
+                <button type="submit" class="btn-delete">
+                    Excluir
+                </button>
+
+                <a href="{% url 'task_list' %}" class="btn-cancel">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
