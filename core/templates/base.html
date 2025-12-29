@@ -28,7 +28,7 @@
 
         /* Barra superior */
         .top-bar {
-            background-color: #1c1c1c;
+            background-color: #000;
             color: #fff;
             height: 60px;
             display: flex;
@@ -46,7 +46,15 @@
         }
 
         .top-left {
+            display: flex;
             text-transform: uppercase;
+            gap: 24px;
+
+        }
+
+        .top-left li,
+        .top-right li {
+            list-style: none;
         }
 
         .top-right {
@@ -56,17 +64,23 @@
             text-decoration: none !important;
         }
 
+        .top-bar a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .top-bar a:hover {
+            opacity: 0.7;
+        }
+
         /* Conteúdo principal */
         .main-content {
             flex: 1;
             background-color: #fff;
         }
-
-        /* Barra inferior */
-        .bottom-bar {
-            background-color: #000;
-            height: 40px;
-        }
+        
     </style>
     {% endblock %}
 </head>
@@ -79,6 +93,7 @@
                 {% block top_left %}
                 {% if user.is_authenticated %}
                     <li>Bem vindo {{ user.username }} </li>
+                    <li><a href="{% url 'newtask'%}">Nova tarefa</a></li>
                 {%endif%}
                 {% endblock %}
             </div>
