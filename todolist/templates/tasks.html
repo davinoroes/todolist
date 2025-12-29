@@ -78,6 +78,7 @@
         <h2>Lista de Tarefas</h2>
 
         <form method="GET" action="{% url 'task_list' %}" class="search-form">
+            {% csrf_token %}
             <input
                 type="text"
                 name="search"
