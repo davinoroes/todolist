@@ -3,7 +3,7 @@
 {% block content %}
 
 <style>
-    /* Container geral */
+    
     .tasks-wrapper {
         min-height: calc(100vh - 80px); /* desconta a navbar */
         display: flex;
@@ -11,7 +11,7 @@
         align-items: center;
     }
 
-    /* Caixa principal */
+    
     .tasks-box {
         background-color: #000;
         color: #fff;
@@ -28,7 +28,7 @@
         font-weight: 500;
     }
 
-    /* Barra de busca */
+    
     .search-form {
         display: flex;
         gap: 10px;
@@ -51,7 +51,7 @@
         font-weight: bold;
     }
 
-    /* Lista de tarefas */
+    
     .tasks-list {
         display: flex;
         flex-direction: column;
@@ -59,28 +59,47 @@
     }
 
     .task-item {
-        background-color: #111;
-        padding: 10px 14px;
-        border-radius: 8px;
-        font-size: 16px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .task-title {
-    word-break: break-word;
+    background-color: #111;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 16px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    transition: background-color 0.2s ease;
 }
 
+    .task-item:hover {
+        background-color: #1a1a1a;
+    }
+
+    .task-title {
+        word-break: break-word;
+    }
+
+    
     .delete-btn {
         color: #aaa;
         text-decoration: none;
         font-size: 16px;
-        transition: 0.2s;
+
+        opacity: 0;
+        transform: translateX(4px);
+        transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
+    }
+
+    
+    .task-item:hover .delete-btn {
+        opacity: 1;
+        transform: translateX(0);
     }
 
     .delete-btn:hover {
         color: #fff;
     }
+
 
     .empty-tasks {
         text-align: center;
