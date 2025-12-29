@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from todolist.models import TaskModel
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView,DeleteView
 from todolist.forms import TaskForm
 from django.urls import reverse_lazy
 
@@ -29,6 +29,13 @@ class CreateTaskView(LoginRequiredMixin,CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+    
+class DeleteTaskView(LoginRequiredMixin,DeleteView):
+    model = TaskModel
+    template_name = 'tasksdelete.html'
+    success_url = reverse_lazy('task_list')
+
+    
 
 
     
