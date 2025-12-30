@@ -80,6 +80,21 @@
             flex: 1;
             background-color: #fff;
         }
+        .top-bar-content {
+            position: relative;
+        }
+
+        .top-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            pointer-events: none; /* evita atrapalhar cliques */
+        }
         
     </style>
     {% endblock %}
@@ -96,6 +111,10 @@
                     <li><a href="{% url 'newtask'%}">Nova tarefa</a></li>
                 {%endif%}
                 {% endblock %}
+            </div>
+            
+            <div class="top-center">
+                TO DO LIST
             </div>
 
             <div class="top-right">
