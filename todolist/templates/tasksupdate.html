@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}
+Nova Tarefa
+{% endblock %}
+
+{% block content %}
+<style>
+    .new-task-wrapper {
+        min-height: calc(100vh - 60px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .new-task-box {
+        background: #000;
+        width: 420px;
+        padding: 32px;
+        border-radius: 24px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+        color: #fff;
+    }
+
+    .new-task-box h1 {
+        text-align: center;
+        margin-bottom: 24px;
+        font-size: 22px;
+        letter-spacing: 1px;
+    }
+
+    .new-task-box form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .new-task-box input,
+    .new-task-box textarea,
+    .new-task-box select {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+    }
+
+    .new-task-box button {
+        margin-top: 8px;
+        padding: 12px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 14px;
+        background: #fff;
+        color: #000;
+        transition: 0.2s;
+    }
+
+    .new-task-box button:hover {
+        opacity: 0.85;
+    }
+
+    .back-link {
+        text-align: center;
+        margin-top: 16px;
+    }
+
+    .back-link a {
+        color: #aaa;
+        text-decoration: none;
+        font-size: 13px;
+    }
+
+    .back-link a:hover {
+        color: #fff;
+    }
+</style>
+
+<div class="new-task-wrapper">
+    <div class="new-task-box">
+        <h1>Editar Tarefa</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" value="Update">Editar tarefa</button>
+        </form>
+
+        <div class="back-link">
+            <a href="{% url 'task_list' %}">← Voltar para lista</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
